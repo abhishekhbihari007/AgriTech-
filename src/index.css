@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+/* AgriTech Insight Design System
+   Academic, scholarly aesthetic with agriculture theme
+   All colors in HSL format
+*/
+
+@layer base {
+  :root {
+    /* Primary: Deep Agriculture Green */
+    --background: 80 25% 98%;
+    --foreground: 120 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 120 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 120 30% 10%;
+
+    /* Primary: Medium Organic Green #467C4B */
+    --primary: 125 28% 38%;
+    --primary-foreground: 60 50% 98%;
+
+    /* Earthy Gold/Beige #F9FBE7 */
+    --secondary: 75 60% 95%;
+    --secondary-foreground: 125 55% 24%;
+
+    --muted: 80 20% 94%;
+    --muted-foreground: 120 10% 40%;
+
+    --accent: 45 70% 50%;
+    --accent-foreground: 120 30% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 80 15% 85%;
+    --input: 80 15% 85%;
+    --ring: 125 28% 38%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --gold: 45 70% 50%;
+    --gold-light: 48 80% 92%;
+    --green-dark: 125 35% 30%;
+    --green-deep: 125 25% 25%;
+    --green-light: 135 30% 73%;
+    --green-misty: 135 30% 73%;
+    --cream: 60 40% 97%;
+    --earth: 30 30% 45%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(125 55% 24% / 0.95), hsl(125 60% 18% / 0.85));
+    --gradient-gold: linear-gradient(135deg, hsl(45 70% 50%), hsl(48 80% 60%));
+    --gradient-subtle: linear-gradient(180deg, hsl(80 25% 98%), hsl(75 60% 95% / 0.3));
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px hsl(120 30% 10% / 0.05);
+    --shadow-md: 0 4px 12px hsl(120 30% 10% / 0.08);
+    --shadow-lg: 0 8px 24px hsl(120 30% 10% / 0.12);
+    --shadow-card: 0 2px 8px hsl(125 55% 24% / 0.06);
+
+    /* Sidebar */
+    --sidebar-background: 80 25% 98%;
+    --sidebar-foreground: 120 30% 10%;
+    --sidebar-primary: 125 28% 38%;
+    --sidebar-primary-foreground: 60 50% 98%;
+    --sidebar-accent: 75 60% 95%;
+    --sidebar-accent-foreground: 125 55% 24%;
+    --sidebar-border: 80 15% 85%;
+    --sidebar-ring: 125 55% 24%;
+  }
+
+  .dark {
+    --background: 120 20% 8%;
+    --foreground: 60 30% 95%;
+
+    --card: 120 18% 12%;
+    --card-foreground: 60 30% 95%;
+
+    --popover: 120 18% 12%;
+    --popover-foreground: 60 30% 95%;
+
+    --primary: 120 45% 45%;
+    --primary-foreground: 120 20% 8%;
+
+    --secondary: 120 15% 18%;
+    --secondary-foreground: 60 30% 95%;
+
+    --muted: 120 15% 18%;
+    --muted-foreground: 80 15% 60%;
+
+    --accent: 45 60% 45%;
+    --accent-foreground: 60 30% 95%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 120 15% 20%;
+    --input: 120 15% 20%;
+    --ring: 120 45% 45%;
+
+    --sidebar-background: 120 20% 8%;
+    --sidebar-foreground: 60 30% 95%;
+    --sidebar-primary: 120 45% 45%;
+    --sidebar-primary-foreground: 120 20% 8%;
+    --sidebar-accent: 120 15% 18%;
+    --sidebar-accent-foreground: 60 30% 95%;
+    --sidebar-border: 120 15% 20%;
+    --sidebar-ring: 120 45% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@layer components {
+  .heading-display {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .heading-section {
+    @apply text-2xl md:text-3xl font-semibold;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .text-body-lg {
+    @apply text-lg leading-relaxed;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .academic-card {
+    @apply bg-card rounded-lg border shadow-[var(--shadow-card)] transition-all duration-300 hover:shadow-[var(--shadow-md)];
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-[hsl(var(--green-dark))] transition-colors;
+  }
+
+  .btn-outline-gold {
+    @apply border-2 border-[hsl(var(--gold))] text-[hsl(var(--gold))] hover:bg-[hsl(var(--gold))] hover:text-foreground transition-colors;
+  }
+}

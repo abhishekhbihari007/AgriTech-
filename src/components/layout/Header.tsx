@@ -1,0 +1,119 @@
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, BookOpen } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const navLinks = [
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+  { name: "Archives", path: "/archives" },
+  { name: "Guidelines", path: "/submission" },
+  { name: "Submit", path: "/submission" },
+  { name: "Contact", path: "/contact" },
+];
+
+export const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  return (
+    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
+      <div className="section-container">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="p-2.5 bg-gradient-to-br from-[#467C4B] to-[#3a6a3f] rounded-xl group-hover:from-[#3a6a3f] group-hover:to-[#467C4B] transition-all duration-300 shadow-md group-hover:shadow-lg group-hover:scale-105">
+              <BookOpen className="h-5 w-5 text-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-lg md:text-xl text-foreground leading-tight group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                AgriTech Insight
+              </span>
+              <span className="text-[10px] md:text-xs text-muted-foreground tracking-wide hidden sm:block" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                Peer-Reviewed E-Magazine
+              </span>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={`relative px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${
+                  location.pathname === link.path
+                    ? "bg-[#467C4B]/10 text-[#467C4B] shadow-sm"
+                    : "text-muted-foreground hover:text-[#467C4B] hover:bg-[#467C4B]/5"
+                }`}
+                style={{ fontFamily: "'Open Sans', sans-serif" }}
+              >
+                {link.name}
+                {location.pathname === link.path && (
+                  <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#467C4B] rounded-full"></span>
+                )}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            <Button asChild variant="outline" size="sm" className="border-[#467C4B]/30 hover:border-[#467C4B] hover:bg-[#467C4B]/5 hover:text-[#467C4B] transition-all duration-300">
+              <Link to="/current-issue" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                Current Issue
+              </Link>
+            </Button>
+            <Button asChild size="sm" className="bg-[#467C4B] hover:bg-[#3a6a3f] text-white shadow-md hover:shadow-lg transition-all duration-300">
+              <Link to="/submission" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                Submit Article
+              </Link>
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2.5 rounded-lg text-muted-foreground hover:text-[#467C4B] hover:bg-[#467C4B]/5 transition-all duration-300"
+          >
+            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden py-4 border-t border-gray-200/50 animate-fade-in bg-white/95 backdrop-blur-sm">
+            <nav className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`px-4 py-3 text-sm font-semibold rounded-lg transition-all duration-300 ${
+                    location.pathname === link.path
+                      ? "bg-[#467C4B]/10 text-[#467C4B] shadow-sm"
+                      : "text-muted-foreground hover:text-[#467C4B] hover:bg-[#467C4B]/5"
+                  }`}
+                  style={{ fontFamily: "'Open Sans', sans-serif" }}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-gray-200/50">
+                <Button asChild variant="outline" className="w-full border-[#467C4B]/30 hover:border-[#467C4B] hover:bg-[#467C4B]/5 hover:text-[#467C4B]">
+                  <Link to="/current-issue" onClick={() => setMobileMenuOpen(false)} style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                    Current Issue
+                  </Link>
+                </Button>
+                <Button asChild className="w-full bg-[#467C4B] hover:bg-[#3a6a3f] text-white shadow-md">
+                  <Link to="/submission" onClick={() => setMobileMenuOpen(false)} style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                    Submit Article
+                  </Link>
+                </Button>
+              </div>
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+};
