@@ -22,7 +22,12 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* All other routes show 404 for now */}
+          <Route path="/about" element={<About />} />
+          <Route path="/current-issue" element={<CurrentIssue />} />
+          <Route path="/archives" element={<Archives />} />
+          <Route path="/editorial-board" element={<EditorialBoard />} />
+          <Route path="/submission" element={<Submission />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

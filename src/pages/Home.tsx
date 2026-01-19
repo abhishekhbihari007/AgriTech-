@@ -259,7 +259,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 md:py-24 lg:py-28 bg-gradient-to-br from-[#467C4B] via-[#5a9462] to-[#A6CDB0] relative overflow-hidden">
+      <section className="py-20 md:py-24 lg:py-28 bg-gradient-to-r from-[#467C4B] via-[#5a9462] to-[#A6CDB0] relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-72 h-72 bg-white/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -29,6 +30,17 @@ const articleTypes = [
 
 const Submission = () => {
   const { toast } = useToast();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tabParam = searchParams.get("tab") || "guidelines";
+  const [activeTab, setActiveTab] = useState<string>(tabParam === "submit" ? "submit" : "guidelines");
+
+  useEffect(() => {
+    const tab = searchParams.get("tab");
+    if (tab === "submit" || tab === "guidelines") {
+      setActiveTab(tab);
+    }
+  }, [searchParams]);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -47,14 +59,21 @@ const Submission = () => {
     });
   };
 
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    setSearchParams({ tab: value });
+  };
+
   return (
     <Layout>
       {/* Page Header */}
-      <section className="bg-secondary py-16 md:py-20">
+      <section className="bg-secondary py-12 md:py-16">
         <div className="section-container">
           <div className="max-w-3xl">
-            <h1 className="heading-display text-foreground mb-4">Author Guidelines & Submission</h1>
-            <p className="text-body-lg text-muted-foreground">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:whitespace-nowrap" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              Author Guidelines & Submission
+            </h1>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed" style={{ fontFamily: "'Open Sans', sans-serif" }}>
               Prepare your manuscript according to our guidelines and submit for peer review.
             </p>
           </div>
@@ -62,9 +81,9 @@ const Submission = () => {
       </section>
 
       {/* Tabs Section */}
-      <section className="py-16 md:py-20">
+      <section className="py-12 md:py-16">
         <div className="section-container">
-          <Tabs defaultValue="guidelines" className="w-full">
+          <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
             <TabsList className="grid w-full max-w-md grid-cols-2 mb-8">
               <TabsTrigger value="guidelines" className="flex items-center gap-2">
                 <FileText className="h-4 w-4" />
@@ -79,21 +98,26 @@ const Submission = () => {
             {/* Guidelines Tab */}
             <TabsContent value="guidelines" className="space-y-8">
               {/* Who Can Submit */}
-              <Card className="academic-card">
-                <CardHeader>
+              <Card className="border-2 border-transparent hover:border-[#467C4B]/40 hover:shadow-xl hover:scale-[1.01] transition-all duration-300 group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#467C4B]/0 to-[#467C4B]/0 group-hover:from-[#467C4B]/3 group-hover:to-[#467C4B]/8 transition-all duration-300"></div>
+                <CardHeader className="relative z-10">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary rounded-lg">
-                      <Users className="h-5 w-5 text-primary-foreground" />
+                    <div className="p-3 bg-gradient-to-br from-[#467C4B]/10 to-[#467C4B]/5 rounded-xl group-hover:from-[#467C4B] group-hover:to-[#467C4B]/80 group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-lg">
+                      <Users className="h-5 w-5 text-[#467C4B] group-hover:text-white transition-colors" />
                     </div>
-                    <CardTitle className="font-serif text-xl">Who Can Submit</CardTitle>
+                    <CardTitle className="text-xl font-bold group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                      Who Can Submit
+                    </CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="relative z-10">
                   <ul className="grid sm:grid-cols-2 gap-3">
                     {whoCanSubmit.map((item, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
-                        <span className="text-sm text-muted-foreground">{item}</span>
+                        <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground group-hover:text-foreground/90 transition-colors" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                          {item}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -101,21 +125,28 @@ const Submission = () => {
               </Card>
 
               {/* Article Types */}
-              <Card className="academic-card">
-                <CardHeader>
+              <Card className="border-2 border-transparent hover:border-[#467C4B]/40 hover:shadow-xl hover:scale-[1.01] transition-all duration-300 group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#467C4B]/0 to-[#467C4B]/0 group-hover:from-[#467C4B]/3 group-hover:to-[#467C4B]/8 transition-all duration-300"></div>
+                <CardHeader className="relative z-10">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary rounded-lg">
-                      <BookOpen className="h-5 w-5 text-primary-foreground" />
+                    <div className="p-3 bg-gradient-to-br from-[#467C4B]/10 to-[#467C4B]/5 rounded-xl group-hover:from-[#467C4B] group-hover:to-[#467C4B]/80 group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-lg">
+                      <BookOpen className="h-5 w-5 text-[#467C4B] group-hover:text-white transition-colors" />
                     </div>
-                    <CardTitle className="font-serif text-xl">Article Types</CardTitle>
+                    <CardTitle className="text-xl font-bold group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                      Article Types
+                    </CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="relative z-10">
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {articleTypes.map((item) => (
-                      <div key={item.type} className="p-4 bg-muted rounded-lg">
-                        <h4 className="font-semibold text-foreground mb-1">{item.type}</h4>
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                      <div key={item.type} className="p-4 bg-gradient-to-br from-[#467C4B]/5 to-[#467C4B]/0 rounded-lg border border-[#467C4B]/10 hover:border-[#467C4B]/30 hover:shadow-md transition-all duration-300">
+                        <h4 className="font-bold text-foreground mb-1 group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                          {item.type}
+                        </h4>
+                        <p className="text-sm text-muted-foreground leading-relaxed" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                          {item.description}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -123,13 +154,16 @@ const Submission = () => {
               </Card>
 
               {/* Formatting Guidelines */}
-              <Card className="academic-card">
-                <CardHeader>
+              <Card className="border-2 border-transparent hover:border-[#467C4B]/40 hover:shadow-xl hover:scale-[1.01] transition-all duration-300 group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#467C4B]/0 to-[#467C4B]/0 group-hover:from-[#467C4B]/3 group-hover:to-[#467C4B]/8 transition-all duration-300"></div>
+                <CardHeader className="relative z-10">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary rounded-lg">
-                      <FileCode className="h-5 w-5 text-primary-foreground" />
+                    <div className="p-3 bg-gradient-to-br from-[#467C4B]/10 to-[#467C4B]/5 rounded-xl group-hover:from-[#467C4B] group-hover:to-[#467C4B]/80 group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-lg">
+                      <FileCode className="h-5 w-5 text-[#467C4B] group-hover:text-white transition-colors" />
                     </div>
-                    <CardTitle className="font-serif text-xl">Formatting Guidelines</CardTitle>
+                    <CardTitle className="text-xl font-bold group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                      Formatting Guidelines
+                    </CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
@@ -138,27 +172,27 @@ const Submission = () => {
                       <h4 className="font-semibold text-foreground mb-3">Document Format</h4>
                       <ul className="space-y-2 text-sm text-muted-foreground">
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           Font: Times New Roman, 12 pt
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           Line spacing: 1.5
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           3,000 – 6,000 words
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           Margins: 1 inch on all sides
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           File format: .doc or .docx
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           Word limit: 3,000-6,000 words
                         </li>
                       </ul>
@@ -167,23 +201,23 @@ const Submission = () => {
                       <h4 className="font-semibold text-foreground mb-3">Structure Requirements</h4>
                       <ul className="space-y-2 text-sm text-muted-foreground">
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           Title page with author details
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           Abstract: 200-300 words
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           Keywords (5-7 terms)
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           References in APA format
                         </li>
                         <li className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-[#467C4B] shrink-0 mt-0.5" />
                           Tables and figures separately
                         </li>
                       </ul>
@@ -193,34 +227,40 @@ const Submission = () => {
               </Card>
 
               {/* Review Process */}
-              <Card className="academic-card">
-                <CardHeader>
+              <Card className="border-2 border-transparent hover:border-[#467C4B]/40 hover:shadow-xl hover:scale-[1.01] transition-all duration-300 group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#467C4B]/0 to-[#467C4B]/0 group-hover:from-[#467C4B]/3 group-hover:to-[#467C4B]/8 transition-all duration-300"></div>
+                <CardHeader className="relative z-10">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary rounded-lg">
-                      <FileCode className="h-5 w-5 text-primary-foreground" />
+                    <div className="p-3 bg-gradient-to-br from-[#467C4B]/10 to-[#467C4B]/5 rounded-xl group-hover:from-[#467C4B] group-hover:to-[#467C4B]/80 group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-lg">
+                      <FileCode className="h-5 w-5 text-[#467C4B] group-hover:text-white transition-colors" />
                     </div>
-                    <CardTitle className="font-serif text-xl">Review Process</CardTitle>
+                    <CardTitle className="text-xl font-bold group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                      Review Process
+                    </CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                <CardContent className="relative z-10">
+                  <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground/90 transition-colors" style={{ fontFamily: "'Open Sans', sans-serif" }}>
                     All submissions undergo editorial screening followed by peer review.
                   </p>
                 </CardContent>
               </Card>
 
               {/* Plagiarism Policy */}
-              <Card className="academic-card">
-                <CardHeader>
+              <Card className="border-2 border-transparent hover:border-[#467C4B]/40 hover:shadow-xl hover:scale-[1.01] transition-all duration-300 group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#467C4B]/0 to-[#467C4B]/0 group-hover:from-[#467C4B]/3 group-hover:to-[#467C4B]/8 transition-all duration-300"></div>
+                <CardHeader className="relative z-10">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 bg-primary rounded-lg">
-                      <AlertCircle className="h-5 w-5 text-primary-foreground" />
+                    <div className="p-3 bg-gradient-to-br from-[#467C4B]/10 to-[#467C4B]/5 rounded-xl group-hover:from-[#467C4B] group-hover:to-[#467C4B]/80 group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-lg">
+                      <AlertCircle className="h-5 w-5 text-[#467C4B] group-hover:text-white transition-colors" />
                     </div>
-                    <CardTitle className="font-serif text-xl">Plagiarism Policy</CardTitle>
+                    <CardTitle className="text-xl font-bold group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                      Plagiarism Policy
+                    </CardTitle>
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                <CardContent className="relative z-10">
+                  <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground/90 transition-colors" style={{ fontFamily: "'Open Sans', sans-serif" }}>
                     Submissions must be original. A plagiarism check will be conducted before acceptance.
                   </p>
                 </CardContent>
@@ -229,10 +269,12 @@ const Submission = () => {
 
             {/* Submit Tab */}
             <TabsContent value="submit">
-              <Card className="academic-card max-w-3xl">
+              <Card className="border-2 border-transparent hover:border-[#467C4B]/40 hover:shadow-xl transition-all duration-300 max-w-3xl">
                 <CardHeader>
-                  <CardTitle className="font-serif text-xl">Submit Your Manuscript</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                    Submit Your Manuscript
+                  </CardTitle>
+                  <CardDescription style={{ fontFamily: "'Open Sans', sans-serif" }}>
                     Fill out the form below to submit your manuscript for peer review
                   </CardDescription>
                 </CardHeader>
@@ -318,7 +360,7 @@ const Submission = () => {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label>Manuscript File *</Label>
-                        <div className="border-2 border-dashed rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer">
+                        <div className="border-2 border-dashed border-[#467C4B]/30 rounded-lg p-6 text-center hover:border-[#467C4B] hover:bg-[#467C4B]/5 transition-all duration-300 cursor-pointer">
                           <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
                           <p className="text-sm text-muted-foreground">
                             Click to upload (.doc, .docx)
@@ -327,7 +369,7 @@ const Submission = () => {
                       </div>
                       <div className="space-y-2">
                         <Label>Figures/Tables (Optional)</Label>
-                        <div className="border-2 border-dashed rounded-lg p-6 text-center hover:border-primary transition-colors cursor-pointer">
+                        <div className="border-2 border-dashed border-[#467C4B]/30 rounded-lg p-6 text-center hover:border-[#467C4B] hover:bg-[#467C4B]/5 transition-all duration-300 cursor-pointer">
                           <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
                           <p className="text-sm text-muted-foreground">
                             Click to upload (.zip, .jpg, .png)
@@ -356,7 +398,7 @@ const Submission = () => {
                     </div>
 
                     <div className="flex items-center gap-4 pt-4">
-                      <Button type="submit" disabled={!formData.declaration} className="flex-1 sm:flex-none">
+                      <Button type="submit" disabled={!formData.declaration} className="flex-1 sm:flex-none bg-[#467C4B] hover:bg-[#467C4B]/90 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                         <Send className="h-4 w-4 mr-2" />
                         Submit Manuscript
                       </Button>

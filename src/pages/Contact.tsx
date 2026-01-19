@@ -25,7 +25,7 @@ const contactInfo = [
     icon: MapPin,
     label: "Address",
     value: "AgriTech Insight Editorial Office",
-    description: "[City, State, Country]",
+    description: "",
   },
   {
     icon: Clock,
@@ -56,11 +56,13 @@ const Contact = () => {
   return (
     <Layout>
       {/* Page Header */}
-      <section className="bg-secondary py-16 md:py-20">
+      <section className="bg-secondary py-12 md:py-16">
         <div className="section-container">
           <div className="max-w-3xl">
-            <h1 className="heading-display text-foreground mb-4">Contact Us</h1>
-            <p className="text-body-lg text-muted-foreground">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              Contact Us
+            </h1>
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed" style={{ fontFamily: "'Open Sans', sans-serif" }}>
               Have questions about submissions, partnerships, or anything else? 
               We'd love to hear from you.
             </p>
@@ -69,28 +71,39 @@ const Contact = () => {
       </section>
 
       {/* Contact Content */}
-      <section className="py-16 md:py-20">
+      <section className="py-12 md:py-16">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <h2 className="heading-section text-foreground mb-6">Get in Touch</h2>
-              <p className="text-muted-foreground mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                Get in Touch
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground mb-8 leading-relaxed" style={{ fontFamily: "'Open Sans', sans-serif" }}>
                 Whether you're a researcher looking to submit your work, an institution 
                 interested in collaboration, or a reader with questions, our team is here to help.
               </p>
               
               <div className="space-y-6">
                 {contactInfo.map((item) => (
-                  <Card key={item.label} className="academic-card">
-                    <CardContent className="flex items-start gap-4 p-4">
-                      <div className="p-2 bg-secondary rounded-lg shrink-0">
-                        <item.icon className="h-5 w-5 text-primary" />
+                  <Card key={item.label} className="border-2 border-transparent hover:border-[#467C4B]/40 hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#467C4B]/0 to-[#467C4B]/0 group-hover:from-[#467C4B]/5 group-hover:to-[#467C4B]/10 transition-all duration-300"></div>
+                    <CardContent className="flex items-start gap-4 p-5 relative z-10">
+                      <div className="p-3 bg-gradient-to-br from-[#467C4B]/10 to-[#467C4B]/5 rounded-xl shrink-0 group-hover:from-[#467C4B] group-hover:to-[#467C4B]/80 group-hover:scale-110 transition-all duration-300 shadow-sm group-hover:shadow-lg">
+                        <item.icon className="h-5 w-5 text-[#467C4B] group-hover:text-white transition-colors" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-foreground">{item.label}</h3>
-                        <p className="text-primary font-medium">{item.value}</p>
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                        <h3 className="font-bold text-foreground mb-1 group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                          {item.label}
+                        </h3>
+                        <p className="text-[#467C4B] font-semibold mb-1" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                          {item.value}
+                        </p>
+                        {item.description && (
+                          <p className="text-sm text-muted-foreground group-hover:text-foreground/90 transition-colors" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                            {item.description}
+                          </p>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
@@ -100,10 +113,12 @@ const Contact = () => {
 
             {/* Contact Form */}
             <div>
-              <Card className="academic-card">
+              <Card className="border-2 border-transparent hover:border-[#467C4B]/40 hover:shadow-xl transition-all duration-300">
                 <CardHeader>
-                  <CardTitle className="font-serif text-xl">Send us a Message</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-xl font-bold" style={{ fontFamily: "'Poppins', sans-serif" }}>
+                    Send us a Message
+                  </CardTitle>
+                  <CardDescription style={{ fontFamily: "'Open Sans', sans-serif" }}>
                     Fill out the form below and we'll get back to you as soon as possible
                   </CardDescription>
                 </CardHeader>
@@ -156,7 +171,7 @@ const Contact = () => {
                       />
                     </div>
 
-                    <Button type="submit" className="w-full">
+                    <Button type="submit" className="w-full bg-[#467C4B] hover:bg-[#467C4B]/90 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                       <Send className="h-4 w-4 mr-2" />
                       Send Message
                     </Button>
@@ -169,7 +184,7 @@ const Contact = () => {
       </section>
 
       {/* Map Placeholder */}
-      <section className="py-16 md:py-20 bg-muted">
+      <section className="py-12 md:py-16 bg-muted">
         <div className="section-container">
           <div className="aspect-[21/9] rounded-xl overflow-hidden bg-secondary flex items-center justify-center">
             <div className="text-center p-8">

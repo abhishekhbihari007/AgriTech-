@@ -61,7 +61,6 @@ export const Footer = () => {
           {/* Quick Links */}
           <div>
             <div className="flex items-center gap-2 mb-5">
-              <div className="h-px w-8 bg-white"></div>
               <h3 className="font-serif font-semibold text-lg text-white">Quick Links</h3>
             </div>
             <ul className="space-y-3">
@@ -81,7 +80,6 @@ export const Footer = () => {
           {/* Resources */}
           <div>
             <div className="flex items-center gap-2 mb-5">
-              <div className="h-px w-8 bg-white"></div>
               <h3 className="font-serif font-semibold text-lg text-white">Resources</h3>
             </div>
             <ul className="space-y-3">
@@ -101,7 +99,6 @@ export const Footer = () => {
           {/* Contact */}
           <div>
             <div className="flex items-center gap-2 mb-5">
-              <div className="h-px w-8 bg-white"></div>
               <h3 className="font-serif font-semibold text-lg text-white">Contact Us</h3>
             </div>
             <ul className="space-y-4">
@@ -117,8 +114,7 @@ export const Footer = () => {
                 <MapPin className="h-5 w-5 mt-0.5 text-white shrink-0" />
                 <span className="text-white/80 text-base leading-relaxed">
                   AgriTech Insight<br />
-                  Editorial Office<br />
-                  [City, State, Country]
+                  Editorial Office
                 </span>
               </li>
             </ul>
