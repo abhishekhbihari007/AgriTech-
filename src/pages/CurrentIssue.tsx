@@ -34,15 +34,38 @@ const CurrentIssue = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
               {currentIssue.month} {currentIssue.year}
             </h1>
-            <p className="text-lg md:text-xl text-white/95 mb-8 leading-relaxed" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+            <p className="text-lg md:text-xl text-white/95 mb-2 leading-relaxed" style={{ fontFamily: "'Open Sans', sans-serif" }}>
               Theme: {currentIssue.theme}
             </p>
+            {currentIssue.tagline && (
+              <p className="text-white/80 text-base mb-8" style={{ fontFamily: "'Open Sans', sans-serif" }}>
+                {currentIssue.tagline}
+              </p>
+            )}
+            {!currentIssue.tagline && <div className="mb-8" />}
             <Button asChild size="lg" className="bg-white hover:bg-white/90 text-[#467C4B] font-semibold shadow-lg hover:shadow-xl hover:scale-105 px-8 py-6 transition-all duration-300">
               <a href="#" download>
                 <Download className="mr-2 h-5 w-5" />
                 Download Full Issue (PDF)
               </a>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Table of Contents (magazine-style) */}
+      <section className="py-8 md:py-10 bg-secondary/50 border-b border-border">
+        <div className="section-container">
+          <h2 className="text-xl font-bold text-foreground mb-4">Contents</h2>
+          <div className="rounded-xl border-2 border-border bg-card p-6 shadow-sm">
+            <ul className="space-y-2">
+              {currentIssue.articles.map((article) => (
+                <li key={article.id} className="flex items-baseline gap-4 py-2 border-b border-border/50 last:border-0">
+                  <span className="text-[#467C4B] font-semibold text-sm shrink-0 w-14">{article.pages ?? "—"}</span>
+                  <span className="text-foreground font-medium">{article.title}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -70,14 +93,18 @@ const CurrentIssue = () => {
                 <CardHeader className="relative z-10">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-3">
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
                         <Badge variant="outline" className="border-[#467C4B]/30 text-[#467C4B] bg-[#467C4B]/5">
                           {article.category}
                         </Badge>
                         {article.pages && (
-                          <span className="text-xs text-muted-foreground font-medium" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-                            pp. {article.pages}
-                          </span>
+                          <span className="text-xs text-muted-foreground font-medium">pp. {article.pages}</span>
+                        )}
+                        {article.doi && (
+                          <span className="text-xs text-muted-foreground font-mono">DOI: {article.doi}</span>
+                        )}
+                        {article.publishedDate && (
+                          <span className="text-xs text-muted-foreground">{article.publishedDate}</span>
                         )}
                       </div>
                       <CardTitle className="text-xl md:text-2xl font-bold leading-tight mb-4 group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>

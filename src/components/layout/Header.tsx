@@ -43,10 +43,10 @@ export const Header = () => {
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-lg md:text-xl text-foreground leading-tight group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>
-                AgriTech Insight
+                Agri Doctor
               </span>
               <span className="text-[10px] md:text-xs text-muted-foreground tracking-wide hidden sm:block" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-                Peer-Reviewed E-Magazine
+                E-Magazine
               </span>
             </div>
           </Link>

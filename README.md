@@ -1,10 +1,10 @@
-# AgriTech Insight
+# Agri Doctor
 
-A peer-reviewed digital e-magazine dedicated to advancing knowledge in agriculture, agri-technology, environmental sustainability, and rural innovation.
+A peer-reviewed e-magazine dedicated to advancing knowledge in agriculture, agri-technology, environmental sustainability, and rural innovation.
 
 ## Project Overview
 
-AgriTech Insight provides a global platform for scientists, academicians, industry experts, and practitioners to share cutting-edge research, innovations, and policy insights.
+Agri Doctor is an e-magazine that provides a global platform for scientists, academicians, industry experts, and practitioners to share cutting-edge research, innovations, and policy insights.
 
 ## Technologies Used
 
@@ -88,4 +88,4 @@ The `dist` folder will contain the production-ready files that can be deployed t
 
 ## License
 
-© 2026 AgriTech Insight. All rights reserved.
+© 2026 Agri Doctor E-Magazine. All rights reserved.

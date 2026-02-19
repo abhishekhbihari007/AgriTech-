@@ -34,10 +34,10 @@ const About = () => {
         <div className="section-container">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              About AgriTech Insight
+              About Agri Doctor E-Magazine
             </h1>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-              A peer-reviewed digital e-magazine dedicated to advancing agricultural knowledge 
+              A peer-reviewed e-magazine dedicated to advancing agricultural knowledge 
               through rigorous research and practical insights.
             </p>
           </div>
@@ -126,7 +126,7 @@ const About = () => {
               Knowledge Hub for Agriculture
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-12 leading-relaxed" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-              AgriTech Insight aims to serve as a knowledge hub where science meets practice. The magazine supports 
+              Agri Doctor aims to serve as a knowledge hub where science meets practice. The e-magazine supports 
               informed decision-making in agriculture, environmental management, and rural development.
             </p>
             <div className="grid md:grid-cols-3 gap-8">

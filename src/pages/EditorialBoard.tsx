@@ -99,7 +99,7 @@ const EditorialBoard = () => {
               advancing knowledge, we'd love to hear from you.
             </p>
             <Button asChild size="lg" className="bg-white hover:bg-white/90 text-[#467C4B] font-semibold shadow-lg hover:shadow-xl hover:scale-105 px-8 py-6 transition-all duration-300">
-              <a href="mailto:editor@agritechinsight.com" className="flex items-center justify-center group">
+              <a href="mailto:editor@agridoctor.com" className="flex items-center justify-center group">
                 Contact Us
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </a>

@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { BookOpen, Users, FileText, Send, ArrowRight, Leaf, Lightbulb, Globe, Phone } from "lucide-react";
+import { BookOpen, Users, FileText, Send, ArrowRight, Leaf, Lightbulb, Globe, Phone, Calendar } from "lucide-react";
+import { currentIssue } from "@/lib/data";
 
 const quickLinks = [
   {
@@ -85,7 +86,7 @@ const Home = () => {
               {/* Badge */}
               <div className="inline-block mb-6 md:mb-8 animate-fade-in">
                 <span className="inline-flex items-center px-4 py-2 rounded-md bg-white/90 backdrop-blur-sm text-gray-700 text-sm font-medium border border-gray-300 shadow-sm hover:bg-white hover:shadow-md transition-all duration-300 cursor-default">
-                  Peer-Reviewed Digital E-Magazine
+                  Peer-Reviewed E-Magazine
                 </span>
               </div>
               
@@ -94,13 +95,13 @@ const Home = () => {
                 animationDelay: "0.1s",
                 fontFamily: "'Poppins', sans-serif"
               }}>
-                AgriTech Insight
+                Agri Doctor
               </h1>
               
               {/* Subtitle */}
               <div className="mb-4 md:mb-5 animate-fade-in" style={{ animationDelay: "0.2s" }}>
                 <p className="text-lg md:text-xl lg:text-2xl text-white font-normal leading-relaxed" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-                  A Digital Magazine on Agriculture, Innovation & Sustainability
+                  E-Magazine on Agriculture, Innovation & Sustainability
                 </p>
               </div>
               
@@ -137,6 +138,71 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Magazine-style: Current Issue cover + In This Issue */}
+      <section className="py-12 md:py-16 bg-background border-b border-border/50">
+        <div className="section-container">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
+            {/* Left: Magazine cover block */}
+            <div className="lg:col-span-2">
+              <Link to="/current-issue" className="block group">
+                <div className="rounded-2xl overflow-hidden border-2 border-border bg-card shadow-xl hover:shadow-2xl hover:border-[#467C4B]/40 transition-all duration-300 aspect-[3/4] max-w-sm flex flex-col">
+                  <div className="flex-1 bg-gradient-to-br from-[#467C4B] via-[#5a9462] to-[#3a6a3f] p-6 flex flex-col justify-between">
+                    <div>
+                      <span className="text-white/90 text-xs font-semibold uppercase tracking-wider">Agri Doctor</span>
+                      <div className="mt-4 flex items-center gap-2 text-white/95 text-sm font-medium">
+                        <Calendar className="h-4 w-4 shrink-0" />
+                        {currentIssue.month} {currentIssue.year}
+                      </div>
+                    </div>
+                    <div>
+                      <span className="text-white/80 text-xs font-semibold">Vol {currentIssue.volume} · Issue {currentIssue.issue}</span>
+                      <h3 className="text-white font-bold text-lg leading-tight mt-2">{currentIssue.theme}</h3>
+                      {currentIssue.tagline && (
+                        <p className="text-white/80 text-sm mt-2">{currentIssue.tagline}</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="bg-[#467C4B] text-primary-foreground px-4 py-3 flex items-center justify-between">
+                    <span className="text-sm font-semibold">{currentIssue.articles.length} articles</span>
+                    <span className="text-sm group-hover:underline">Read issue →</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+            {/* Right: In This Issue (table of contents style) */}
+            <div className="lg:col-span-3">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">In This Issue</h2>
+              <p className="text-muted-foreground text-sm mb-6">
+                {currentIssue.month} {currentIssue.year} · Volume {currentIssue.volume}, Issue {currentIssue.issue}
+              </p>
+              <ul className="space-y-3">
+                {currentIssue.articles.slice(0, 6).map((article, idx) => (
+                  <li key={article.id}>
+                    <Link
+                      to="/current-issue"
+                      className="flex items-start gap-3 py-2 rounded-lg hover:bg-[#467C4B]/5 transition-colors group"
+                    >
+                      <span className="text-[#467C4B] font-semibold text-sm shrink-0 w-8">{article.pages?.split("-")[0] ?? idx + 1}</span>
+                      <span className="text-foreground font-medium group-hover:text-[#467C4B] line-clamp-2">{article.title}</span>
+                      <ArrowRight className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              {currentIssue.articles.length > 6 && (
+                <p className="text-muted-foreground text-sm mt-2">+ {currentIssue.articles.length - 6} more in this issue</p>
+              )}
+              <Button asChild className="mt-6 bg-[#467C4B] hover:bg-[#3a6a3f]">
+                <Link to="/current-issue" className="inline-flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  Read full issue
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Short Description */}
       <section className="py-16 md:py-20 lg:py-24 bg-secondary">
         <div className="section-container">
@@ -145,8 +211,8 @@ const Home = () => {
               Bridging Science and Practice
             </h2>
             <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
-              AgriTech Insight is a peer-reviewed digital e-magazine dedicated to advancing knowledge in agriculture, 
-              agri-technology, environmental sustainability, and rural innovation. The magazine provides a global 
+              Agri Doctor is a peer-reviewed e-magazine dedicated to advancing knowledge in agriculture, 
+              agri-technology, environmental sustainability, and rural innovation. The e-magazine provides a global 
               platform for scientists, academicians, industry experts, and practitioners to share cutting-edge research, 
               innovations, and policy insights.
             </p>
@@ -162,7 +228,7 @@ const Home = () => {
               <span className="text-[#467C4B] font-semibold text-sm uppercase tracking-wider">Resources</span>
             </div>
             <h2 className="heading-section text-foreground mb-4 md:mb-5 font-bold text-3xl md:text-4xl lg:text-5xl">
-              Explore AgriTech Insight
+              Explore Agri Doctor E-Magazine
             </h2>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Navigate through our resources to access the latest research, submission guidelines, and more
@@ -220,7 +286,7 @@ const Home = () => {
                 Where Science Meets Practice
               </h2>
               <p className="text-muted-foreground mb-6 md:mb-8 leading-relaxed text-base md:text-lg" style={{ fontFamily: "'Open Sans', sans-serif" }}>
-                AgriTech Insight bridges the gap between research and real-world agricultural applications. The magazine 
+                Agri Doctor bridges the gap between research and real-world agricultural applications. The e-magazine 
                 highlights new scientific discoveries, emerging technologies, sustainable practices, and agribusiness 
                 innovations that contribute to food security and environmental resilience.
               </p>

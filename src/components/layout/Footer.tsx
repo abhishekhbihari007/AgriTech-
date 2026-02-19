@@ -37,11 +37,11 @@ export const Footer = () => {
                 <BookOpen className="h-5 w-5 text-white" />
               </div>
               <span className="font-serif font-bold text-xl text-white">
-                AgriTech Insight
+                Agri Doctor
               </span>
             </Link>
             <p className="text-white/80 text-base leading-relaxed mb-6">
-              A peer-reviewed digital e-magazine bridging the gap between agricultural research, 
+              A peer-reviewed e-magazine bridging the gap between agricultural research, 
               technology, and practical farming for a sustainable tomorrow.
             </p>
             <div className="flex gap-3">
@@ -104,7 +104,7 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail className="h-5 w-5 mt-0.5 text-white shrink-0" />
-                <span className="text-white/80 text-base leading-relaxed">editor@agritechinsight.com</span>
+                <span className="text-white/80 text-base leading-relaxed">editor@agridoctor.com</span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="h-5 w-5 mt-0.5 text-white shrink-0" />
@@ -113,7 +113,7 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 mt-0.5 text-white shrink-0" />
                 <span className="text-white/80 text-base leading-relaxed">
-                  AgriTech Insight<br />
+                  Agri Doctor E-Magazine<br />
                   Editorial Office
                 </span>
               </li>
@@ -126,12 +126,12 @@ export const Footer = () => {
       <div className="border-t border-white/20">
         <div className="section-container py-6">
           <p className="text-white/80 text-xs text-center leading-relaxed max-w-4xl mx-auto mb-4">
-            <strong className="text-white">E-MAGAZINE STATEMENT:</strong> AgriTech Insight is an independent, peer-reviewed digital magazine 
+            <strong className="text-white">E-MAGAZINE STATEMENT:</strong> Agri Doctor is an independent, peer-reviewed digital magazine 
             dedicated to advancing agricultural science, farm innovation, and sustainable development through high-quality 
             scholarly and professional publications.
           </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-xs text-white/80 pt-4 border-t border-white/10">
-            <p>© {new Date().getFullYear()} AgriTech Insight. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Agri Doctor E-Magazine. All rights reserved.</p>
           </div>
         </div>
       </div>

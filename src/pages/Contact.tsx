@@ -12,7 +12,7 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "editor@agritechinsight.com",
+    value: "editor@agridoctor.com",
     description: "For general inquiries and submissions",
   },
   {
@@ -24,7 +24,7 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Address",
-    value: "AgriTech Insight Editorial Office",
+    value: "Agri Doctor E-Magazine Editorial Office",
     description: "",
   },
   {

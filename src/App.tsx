@@ -8,6 +8,7 @@ import About from "./pages/About";
 import EditorialBoard from "./pages/EditorialBoard";
 import Archives from "./pages/Archives";
 import CurrentIssue from "./pages/CurrentIssue";
+import IssueDetail from "./pages/IssueDetail";
 import Submission from "./pages/Submission";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/current-issue" element={<CurrentIssue />} />
           <Route path="/archives" element={<Archives />} />
+          <Route path="/issue/:volume/:issue" element={<IssueDetail />} />
           <Route path="/editorial-board" element={<EditorialBoard />} />
           <Route path="/submission" element={<Submission />} />
           <Route path="/contact" element={<Contact />} />
