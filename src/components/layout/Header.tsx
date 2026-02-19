@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, BookOpen } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -38,8 +38,8 @@ export const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="p-2.5 bg-gradient-to-br from-[#467C4B] to-[#3a6a3f] rounded-xl group-hover:from-[#3a6a3f] group-hover:to-[#467C4B] transition-all duration-300 shadow-md group-hover:shadow-lg group-hover:scale-105">
-              <BookOpen className="h-5 w-5 text-white" />
+            <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden shadow-md group-hover:shadow-lg group-hover:scale-105 transition-all duration-300 flex-shrink-0">
+              <img src="/logo.jpeg" alt="Agri Doctor" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col">
               <span className="font-bold text-lg md:text-xl text-foreground leading-tight group-hover:text-[#467C4B] transition-colors" style={{ fontFamily: "'Poppins', sans-serif" }}>

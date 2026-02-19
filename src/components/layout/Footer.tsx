@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BookOpen, Mail, MapPin, Phone, Facebook, Twitter, Linkedin, Youtube } from "lucide-react";
+import { Mail, MapPin, Phone, Facebook, Twitter, Linkedin, Youtube } from "lucide-react";
 
 const quickLinks = [
   { name: "Home", path: "/" },
@@ -33,8 +33,8 @@ export const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-5">
-              <div className="p-2 bg-white/10 rounded-lg">
-                <BookOpen className="h-5 w-5 text-white" />
+              <div className="w-12 h-12 md:w-14 md:h-14 rounded-lg overflow-hidden bg-white/10 flex-shrink-0">
+                <img src="/logo.jpeg" alt="Agri Doctor" className="w-full h-full object-cover" />
               </div>
               <span className="font-serif font-bold text-xl text-white">
                 Agri Doctor
